@@ -1,0 +1,8 @@
+apply plugin:'jetty'
+apply plugin: 'war'
+
+jettyRun {
+    jettyRun.httpPort = 9090
+    contextPath = ''
+}
+
