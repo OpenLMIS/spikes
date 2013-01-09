@@ -457,7 +457,13 @@ input {
 
 .gridStyle {
     border: 1px solid rgb(212,212,212);
-    width: 1000px;
+    width: 800px;
     height: 500px
+}
+
+.editBtn {
+    position: relative ;
+    left: 700px;
+    top: 4px;
 }
 
