@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
-<html ng-app="ngGrid">
+<html ng-app="grid">
 <head>
     <title>index page</title>
     <link rel="stylesheet" type="text/css" href="../css/ng-grid.css" />
@@ -8,11 +8,12 @@
     <script type="text/javascript" src="../lib/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="../ng-grid-1.6.0.debug.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/grid-module.js"></script>
 </head>
 <body ng-controller="bodyController" >
-<tr>
-    <div class="gridStyle" ng-grid="gridOptions">
+<form id="form" name="form" class="css-form" >
+    <div class="gridStyle"  ng-grid="gridOptions">
     </div>
-</tr>
+</form>
 </body>
 </html>
