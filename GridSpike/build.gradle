@@ -1,8 +1,9 @@
 apply plugin:'jetty'
+apply plugin: 'idea'
 apply plugin: 'war'
 
 jettyRun {
-    jettyRun.httpPort = 9090
+    jettyRun.httpPort = 9092
     contextPath = ''
 }
 
