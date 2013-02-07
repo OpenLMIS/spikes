@@ -1,0 +1,69 @@
+table {
+    display: table;
+    width: 100%;
+}
+
+table thead {
+    display: table-header-group;
+}
+
+table tbody {
+    display: table-row-group;
+}
+
+table tfoot {
+    display: table-footer-group;
+}
+
+table tr {
+    display: table-row;
+    height: auto;
+}
+
+table th,
+table td {
+    display: table-cell;
+    overflow: visible;
+}
+
+table th,
+table td {
+    height: 1px; /* Do the trick to make div.nobrk fill td height */
+}
+
+table tr.singlecell td,
+table tr.singlecell th {
+    height: auto; /* Reset trick for a full row td */
+}
+
+.nobrk {
+    page-break-inside: avoid;
+    orphans: 10;
+    widows: 10;
+    border: 1px solid #000;
+    position: relative;
+    margin: -1px 0 0 -1px;
+    padding: 2px 3px;
+    min-height: 14px;
+    line-height: 14px;
+    height: 100%;
+}
+
+table tbody td .nobrk {
+    min-height: 28px;
+}
+
+.page-break { page-break-after:always;}
+
+div.summary-info {
+    page-break-after: always;
+}
+
+div.requisition-info {
+    page-break-before: always;
+    page-break-after: always;
+}
+
+div.printPage {
+    size: landscape;
+}
