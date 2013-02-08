@@ -8,34 +8,58 @@ div.requisition-info {
     page-break-after: always;
 }
 
-.tableColumn {
-    width: 20px;
-}
+/*.tableColumn {*/
+    /*width: 20px;*/
+/*}*/
 table {
     border-collapse: collapse;
+    width: 100%;
 }
-thead {
+
+/*.requisition-cell {*/
+    /*max-height: 20px;*/
+/*}*/
+body {
+    font-size: 8px;
+    font-family: Arial, sans-serif;
+}
+
+.webkit-print thead {
     visibility: hidden;
 }
 td, th {
     vertical-align: top;
     text-align: left;
 }
-.list table:first-child {
-    background: red;
+span[class^='cell-'] {
+ display: block;
+ padding: 3px;
+ word-wrap: break-word;
+    height: 31px;
+    overflow: hidden;
+    line-height: 11px;
 }
+.cell-small {
+ max-width: 64px;
+}
+th span[class^='cell-'] {
+    max-height: 54px;
+    height: auto;
+}
+.cell-medium {
+ width: 90px;
+}
+.cell-large {
 
+}
 
 @page {
     size: A4 landscape;
 }
 @media print {
-    thead {
+
+    .webkit-print thead {
         visibility: visible;
     }
-    body {
-        font-size: 8px;
-    }
-
 }
 
