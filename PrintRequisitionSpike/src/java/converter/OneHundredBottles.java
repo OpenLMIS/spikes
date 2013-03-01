@@ -15,7 +15,7 @@ public class OneHundredBottles {
     StringBuffer buf = new StringBuffer();
     buf.append("<html>");
     buf.append("<head><style language='text/css'>");
-    buf.append("h3 { border: 1px solid #aaaaff; background: #ccccff; ");
+    buf.append("h3 { border: 1px solid #aaaaff; background: #ffccff; ");
     buf.append("padding: 1em; text-transform: capitalize; font-family: sansserif; font-weight: normal;}");
     buf.append("p { margin: 1em 1em 4em 3em; } p:first-letter { color: red; font-size: 150%; }");
     buf.append("h2 { background: #5555ff; color: white; border: 10px solid black; padding: 3em; font-size: 200%; }");
@@ -28,7 +28,7 @@ public class OneHundredBottles {
     }
     buf.append("<h2>No more bottles of beer on the wall, no more bottles of beer. ");
     buf.append("Go to the store and buy some more, 99 bottles of beer on the wall.</h2>");
-    buf.append("</body>");
+    buf.append("</body></html>");
     DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
     Document doc = builder.parse(new StringBufferInputStream(buf.toString()));
     ITextRenderer renderer = new ITextRenderer();
