@@ -3,7 +3,9 @@ package converter;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.Rectangle;
-import com.lowagie.text.pdf.*;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfReader;
+import com.lowagie.text.pdf.PdfWriter;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -20,7 +22,7 @@ public class PrintRequisitionAsPdf {
   }
 
   private static void writePdf(int totalPages) throws DocumentException, FileNotFoundException {
-    Rectangle rec = new Rectangle(1500,1059);
+    Rectangle rec = new Rectangle(1500, 1059);
     Document document = new Document(rec);
     PdfWriter.getInstance(document,
       new FileOutputStream("Table.pdf"));
@@ -31,16 +33,16 @@ public class PrintRequisitionAsPdf {
     document.open();
 
     Paragraph paragraph = new Paragraph();
-    Chunk chunk = new Chunk("Report and Requisition for :" , FontFactory.getFont(FontFactory.TIMES, 30, Font.BOLD, Color.BLACK));
+    Chunk chunk = new Chunk("Report and Requisition for :", FontFactory.getFont(FontFactory.TIMES, 30, Font.BOLD, Color.BLACK));
     paragraph.add(chunk);
     chunk = new Chunk("\n\nFacility: F10 \t\t Operated By: WHO \t\t Maximum Stock level: 3 \t\t Emergency Order Point: abcd \n\n" +
       " State: Arusha \t\t District: Arusha \t\t Reporting Peroid: 03/03/2012 - 03/03/2013", FontFactory.getFont(FontFactory.TIMES, 20, Font.NORMAL, Color.BLACK));
     paragraph.add(chunk);
     document.add(paragraph);
     PdfPTable table = new PdfPTable(21);
-    int[] widths = new int[] {40,150,40,40,40,40,40,40,40,40,40,40,40,40,40,100,40,40,40,40,50};
+    int[] widths = new int[]{40, 150, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 100, 40, 40, 40, 40, 50};
     table.setWidths(widths);
-    table.getDefaultCell().setBackgroundColor(Color.LIGHT_GRAY);
+    table.getDefaultCell().setBackgroundColor(Color.DARK_GRAY);
     table.setWidthPercentage(100);
     table.setSpacingBefore(100);
 
@@ -68,11 +70,16 @@ public class PrintRequisitionAsPdf {
     table.getDefaultCell().setBackgroundColor(null);
     table.setHeaderRows(1);
 
-    String[] data = new String[] {"P10", "antibiotic Capsule 300/200/600 mg lorem ipsum lorem iprum",
-    "Strip", "64375862", "89237498", "38472398","123", "1122333", "23234", "34545", "21312", "213123", "234234",
-    "234234", "234324", "Due to bad weather", "234234", "43234", "324324", "34234", "Remarks are this"};
+    String[] data = new String[]{"P10", "antibiotic Capsule 300/200/600 mg lorem ipsum lorem iprum",
+      "Strip", "64375862", "89237498", "38472398", "123", "1122333", "23234", "34545", "21312", "213123", "234234",
+      "234234", "234324", "Due to bad weather", "234234", "43234", "324324", "34234", "Remarks are this"};
     for (int i = 0; i < 1000; i++) {
+      if (i % 2 == 0) {
+        table.getDefaultCell().setBackgroundColor(Color.WHITE);
+      } else {
+        table.getDefaultCell().setBackgroundColor(Color.LIGHT_GRAY);
 
+      }
       for (String text : data) {
         table.addCell(text);
       }
