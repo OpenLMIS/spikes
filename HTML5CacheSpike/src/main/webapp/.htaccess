@@ -1,0 +1,10 @@
+AddType text/cache-manifest .appcache
+
+Header unset Pragma
+FileETag None
+Header unset ETag
+
+# cache html/htm/xml/txt diles for 2 days
+#<FilesMatch ".(html|htm)$">
+  Header set Cache-Control "max-age=7200, must-revalidate"
+#</FilesMatch>

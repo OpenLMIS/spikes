@@ -1,0 +1,19 @@
+/*
+ * Copyright © 2013 VillageReach.  All Rights Reserved.  This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+ *
+ * If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+ng-include[src*='navigation.html'] {
+  position: relative;
+  z-index: 2;
+}
+.navigation {
+  z-index: auto;
+}
+.login-page {
+  border-radius: 0;
+}
+.ui-datepicker select.ui-datepicker-year {
+  color: #555;
+  background-color: white;
+}

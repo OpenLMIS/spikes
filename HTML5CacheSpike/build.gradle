@@ -1,0 +1,15 @@
+apply plugin:'jetty'
+apply plugin: 'idea'
+apply plugin: 'war'
+
+repositories {
+        mavenCentral()
+    }
+dependencies {
+        compile 'org.mortbay.jetty:jetty:6.1.9'
+    }
+
+jettyRun {
+    jettyRun.httpPort = 9092
+    contextPath = ''
+}
