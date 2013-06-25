@@ -9,17 +9,24 @@
 
 <form id="form1" ng-controller="FormController">
   <div>
-    <input type="text" ng-model="form.name"/>
+    <input type="text" ng-model="object.code"/>
+  </div>
+
+  <br/>
+
+  <div>
+    <input type="text" ng-model="object.name"/>
+  </div>
+
+  <br/>
+
+  <div>
+    <textarea ng-model="object.description"></textarea>
   </div>
   <br/>
 
   <div>
-    <textarea ng-model="form.data"></textarea>
-  </div>
-  <br/>
-
-  <div>
-    <input type="button" value="Save" ng-click="save(form)"/>
+    <input type="button" value="Save" ng-click="save(object)"/>
   </div>
   <br/>
 </form>

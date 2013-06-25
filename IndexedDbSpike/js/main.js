@@ -1,11 +1,10 @@
 function FormController($scope) {
 
   var db;
-  var request = indexedDB.open("form", 9);
+  var request = indexedDB.open("MyDb", 2);
 
   request.onsuccess = function (event) {
     db = request.result;
-    console.log(db);
   };
 
   request.onerror = function (e) {
@@ -14,23 +13,23 @@ function FormController($scope) {
 
   request.onupgradeneeded = function (evt) {
     db = request.result;
-    db.deleteObjectStore("forms");
-    db.createObjectStore("forms", {
+    var formsStore = db.createObjectStore("objects", {
       "keyPath": "id",
       "autoIncrement": true
     });
-    var objectStore = evt.currentTarget.transaction.objectStore('forms');
-    objectStore.createIndex("price", "price", { unique: false });
+    formsStore.createIndex("by_code", "code", { unique: true});
+    formsStore.createIndex("by_name", "name", { unique: true });
     console.info(db);
   };
 
   $scope.save = function (data) {
-    var transactionRequest = db.transaction([], IDBTransaction.READ_WRITE);
-    transactionRequest.onsuccess = function (event) {
-      console.log(event);
-    }
-    transactionRequest.onerror = function (event) {
-      console.log(event);
+    var transaction = db.transaction(['objects'], 'readwrite');
+    var objects = transaction.objectStore('objects');
+
+    objects.put(data);
+
+    transaction.oncomplete = function() {
+      console.log('done');
     }
   }
 }
