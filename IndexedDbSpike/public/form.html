@@ -21,8 +21,10 @@
   <br/>
 
   <div>
-    <textarea ng-model="object.description"></textarea>
+    <input ng-model="object.description" ng-list />
   </div>
+  <br/>
+
   <br/>
 
   <div>
@@ -32,6 +34,11 @@
 
   <br>
   <div>
+    <div ><input type="text" ng-model="query" placeholder="search..."/>
+    <input type="button" value="Search by code" ng-click="searchByCode(query)" />
+    <input type="button" value="Search by name" ng-click="searchByName(query)" /></div>
+
+    <br><br>
     <table border="1" style="padding: 3px;">
       <thead>
       <tr>
@@ -46,7 +53,7 @@
       <tr ng-repeat="data in dataArr">
         <td><span ng-show="!editable" ng-bind="data.code"></span><input ng-show="editable" ng-model="data.code" /> </td>
         <td><span ng-show="!editable" ng-bind="data.name"></span><input ng-show="editable" ng-model="data.name" /></td>
-        <td><span ng-show="!editable" ng-bind="data.description"></span><input ng-show="editable" ng-model="data.description" /></td>
+        <td><span ng-show="!editable" ng-bind="data.description"></span><input ng-show="editable" ng-list ng-model="data.description" /></td>
         <td><input type="button" value="Edit" ng-show="!editable" ng-click="editable=true"/>
           <input type="button" value="Update" ng-show="editable" ng-click="editable=false; save(data)"/></td>
         <td><input type="button" value="Delete" ng-click="delete(data)" /></td>
