@@ -1,7 +1,7 @@
 function FormController($scope) {
 
   var db;
-  var request = indexedDB.open("MyDb", 4);
+  var request = indexedDB.open("MyDb3", 2);
   var transaction;
 
   $scope.refreshData = function () {
@@ -31,12 +31,16 @@ function FormController($scope) {
   request.onupgradeneeded = function (evt) {
     db = request.result;
     db.deleteObjectStore('objects');
+
     var formsStore = db.createObjectStore("objects", {
       "keyPath": "id",
       "autoIncrement": true
     });
     formsStore.createIndex("by_code", "code", { unique: true});
-    formsStore.createIndex("by_name", "name", {});
+    formsStore.createIndex("by_name", "name.first", {});
+    formsStore.createIndex("by_description", "description", {});
+
+
     console.info(db);
   };
 
@@ -75,8 +79,12 @@ function FormController($scope) {
     $scope.dataArr = [];
     var transaction = db.transaction('objects');
     var by_name = transaction.objectStore('objects').index('by_name');
+    var by_code = transaction.objectStore('objects').index('by_code');
 
-    var request = by_name.openCursor(IDBKeyRange.only(query));
+    var names = by_name.get(IDBKeyRange.only('b'));
+    var codes = by_code.get(IDBKeyRange.only('a'));
+
+    var request = names.intersect(codes);
 
     request.onsuccess = function () {
       var cursor = request.result;
@@ -85,6 +93,10 @@ function FormController($scope) {
         $scope.dataArr.push(cursor.value);
         cursor.continue();
       }
+    }
+
+    request.onerror = function(e) {
+      console.log(e);
     }
     transaction.oncomplete = function () {
       $scope.$apply();
